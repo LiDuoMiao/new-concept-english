@@ -485,13 +485,14 @@ class ReadingSystem {
       }));
 
       if (this.dom.bookName) {
-        this.dom.bookName.textContent = `《${data.bookName}》`;
+        this.dom.bookName.textContent = `《${data.name}》`;
       }
       if (this.dom.bookLevel) {
-        this.dom.bookLevel.textContent = `${data.bookLevel}`;
+        this.dom.bookLevel.textContent = `${data.level}`;
       }
-      if (this.dom.bookCover && data.bookCover) {
-        this.dom.bookCover.src = `${this.state.bookPath}/${data.bookCover}`;
+      if (this.dom.bookCover && data.cover) {
+        this.dom.bookCover.src = `${this.state.bookPath}/${data.cover}`;
+        // this.dom.bookCover.src = "https://nce.mleo.site/NCE1/NCE1.jpg";
       }
       this.lrcCache.clear();
       this.audioPreload.clear();
@@ -1498,7 +1499,7 @@ class ReadingSystem {
     }
 
     try {
-      const response = await fetch('http://localhost:5001/translate', {
+      const response = await fetch('http://192.168.1.41:5001/translate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -1526,7 +1527,7 @@ class ReadingSystem {
   // 使用 LibreTranslate API 翻译单词并获取 alternatives
   async translateWordWithAlternatives(word) {
     try {
-      const response = await fetch('http://localhost:5001/translate', {
+      const response = await fetch('http://192.168.1.41:5001/translate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
